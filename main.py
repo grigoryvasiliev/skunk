@@ -17,9 +17,8 @@ env = Environment(loader = FileSystemLoader( templates_dirs ))
 
 def render(tmpl):
 
-  print tmpl[2]
   template = env.get_template( tmpl[1] )
-  res = template.render()  
+  res = template.render()
 
   open(tmpl[0], 'w' ).write( res )
 
