@@ -4,12 +4,10 @@ from jinja2 import Environment, FileSystemLoader
 import os
 from os import path
 
-path.sep = '/'
-
 q_root = r"." 
 
-templates_dirs = [os.path.join(q_root, "templates/queries"), os.path.join(q_root, "templates/common")]
-path2templates = os.path.join(q_root,"templates/queries")
+templates_dirs = [os.path.join(q_root, r"templates\queries"), os.path.join(q_root, r"templates\common")]
+path2templates = os.path.join(q_root,r"templates\queries")
 path2result = q_root
 
 
@@ -33,18 +31,13 @@ def get_templates(tmpl_path):
 
 def mkdir(where, templates):
 
-  if not hasattr( mkdir, '_deleted' ):
-      mkdir._deleted = []
-
   for tmpl in templates:
 
     import shutil
     path = os.path.join(where, tmpl[0])
 
-    if path not in mkdir._deleted:        
-        shutil.rmtree(path, ignore_errors=True)
+    if not os.path.exists( path ):
         os.makedirs( path )
-        mkdir._deleted.append( path )            
 
     tmpl[0] = os.path.join( path, tmpl[2] )
 
